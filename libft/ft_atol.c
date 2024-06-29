@@ -1,25 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/06 20:22:21 by livsauze          #+#    #+#             */
-/*   Updated: 2024/06/29 18:22:16 by livsauze         ###   ########.fr       */
+/*   Created: 2024/06/07 14:18:23 by livsauze          #+#    #+#             */
+/*   Updated: 2024/06/07 14:18:47 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/philo.h"
+#include "libft.h"
 
-int	main(int ac, char **av)
+long	ft_atol(char *str)
 {
-	t_p p;
-	
-	if (ft_errors(ac, av) == 1)
-		exit(EXIT_FAILURE);
-	ft_init_data(av, ac, &p);
-	ft_start_routine(&p);
-	free(p.ph);
-	return (0);
+	int		i;
+	long	sign;
+	long	result;
+
+	i = 0;
+	result = 0;
+	sign = 1;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	if (str[i] == '+')
+		i++;
+	else if (str[i] == '-')
+	{
+		sign = sign * (-1);
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		result = result * 10 + (str[i] - '0');
+		i++;
+	}
+	return (sign * result);
 }
