@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:27:45 by livsauze          #+#    #+#             */
-/*   Updated: 2024/06/29 16:53:30 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/06/30 20:12:49 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	ft_init_philos(t_p *p)
 	{
 		p->ph[i].philo_id = i + 1;
 		p->ph[i].meal_count = 0;
-		// p->ph[i].dead = 0;
 		p->ph[i].last_eat = p->data.start_time;
 		p->ph[i].r_fork = NULL;
 		pthread_mutex_init(&p->ph[i].l_fork, NULL);
@@ -49,6 +48,7 @@ void	ft_init_data(char **av, int ac, t_p *p)
 	p->data.time_to_eat = ft_atoi(av[3]);
 	p->data.time_to_sleep = ft_atoi(av[4]);
 	p->data.stop = 0;
+	p->data.full = 0;
 	if (p->data.time_to_die < 60 || p->data.time_to_eat < 60
 		|| p->data.time_to_sleep < 60)
 		ft_exit("Do not use values lower than 60ms");

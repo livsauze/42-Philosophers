@@ -6,24 +6,47 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 18:45:05 by livsauze          #+#    #+#             */
-/*   Updated: 2024/06/29 18:25:28 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/06/30 20:16:57 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 
+int	ft_is_full(t_philo *ph)
+{
+	int	i;
+	int	count;
+
+	i = 0;
+	count = 0;
+	while (i < ph->p_data->philos_nb)
+	{
+		if (ph[i].meal_count == ph->p_data->max_meal)
+			count++;
+		i++;
+	}
+	if (count == ph->p_data->philos_nb)
+		return (1);
+	else
+		return (0);
+}
+
 void	*ft_death(void	*arg)
 {
 	t_philo	*ph;
 	int i;
-
+	int	eat;
+	
 	ph = (t_philo *)arg;
 	while (1)
 	{
 		i = 0;
 		while (i < ph->p_data->philos_nb && !ph->p_data->stop)
 		{
-			if (ft_is_dead(&ph[i]))
+			eat = ft_is_full(ph);
+			if (eat)
+				ph->p_data->full++;
+			if (ft_is_dead(&ph[i]) || eat)
 			{
 				ph->p_data->stop++;
 				return (NULL);

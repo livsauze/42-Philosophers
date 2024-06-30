@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:00:11 by livsauze          #+#    #+#             */
-/*   Updated: 2024/06/29 17:43:32 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/06/30 20:12:27 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_data
 	int				time_to_eat;
 	int				stop;
 	int				max_meal;
+	int				full;
 	long long		start_time;
 	pthread_mutex_t	time_m;
 	pthread_mutex_t	write_m;
@@ -40,7 +41,6 @@ typedef struct s_philo
 	unsigned int	philo_id;
 	long long		last_eat;
 	int				meal_count;
-	// int				dead;
 	pthread_mutex_t	*r_fork;
 	pthread_mutex_t	l_fork;
 	pthread_t		thread;

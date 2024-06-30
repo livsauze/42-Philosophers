@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 11:27:22 by livsauze          #+#    #+#             */
-/*   Updated: 2024/06/29 18:23:12 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/06/30 20:12:09 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,10 @@ void	ft_eat(t_philo *ph)
 	ph->last_eat = ft_get_time();
 	pthread_mutex_unlock(&ph->p_data->time_m);
 	ft_write("is eating", ph);
+	ph->meal_count++;
 	ft_usleep(ph->p_data->time_to_eat, ph);		
 	pthread_mutex_unlock(&ph->l_fork);
 	pthread_mutex_unlock(ph->r_fork);
-	ph->meal_count++;
 }
 
 void	*ft_dinner(void *data)
