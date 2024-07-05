@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:27:45 by livsauze          #+#    #+#             */
-/*   Updated: 2024/06/30 20:12:49 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:55:58 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_init_mutex(t_p *p)
 {
 	pthread_mutex_init(&p->data.time_m, NULL);
-	pthread_mutex_init(&p->data.write_m, NULL);	
+	pthread_mutex_init(&p->data.write_m, NULL);
 	pthread_mutex_init(&p->data.dead_m, NULL);
 }
 
@@ -41,19 +41,20 @@ void	ft_init_philos(t_p *p)
 		i++;
 	}
 }
+
 void	ft_init_data(char **av, int ac, t_p *p)
 {
-	p->data.philos_nb = ft_atoi(av[1]);
-	p->data.time_to_die = ft_atoi(av[2]);
-	p->data.time_to_eat = ft_atoi(av[3]);
-	p->data.time_to_sleep = ft_atoi(av[4]);
+	p->data.philos_nb = ft_atol(av[1]);
+	p->data.time_to_die = ft_atol(av[2]);
+	p->data.time_to_eat = ft_atol(av[3]);
+	p->data.time_to_sleep = ft_atol(av[4]);
 	p->data.stop = 0;
 	p->data.full = 0;
 	if (p->data.time_to_die < 60 || p->data.time_to_eat < 60
 		|| p->data.time_to_sleep < 60)
 		ft_exit("Do not use values lower than 60ms");
 	if (ac == 6)
-		p->data.max_meal = ft_atoi(av[5]);
+		p->data.max_meal = ft_atol(av[5]);
 	else
 		p->data.max_meal = -1;
 	p->data.start_time = ft_get_time();

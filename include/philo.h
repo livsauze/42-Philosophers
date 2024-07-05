@@ -6,14 +6,14 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:00:11 by livsauze          #+#    #+#             */
-/*   Updated: 2024/06/30 20:12:27 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:52:02 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <libft.h>
+# include <unistd.h>
 # include <limits.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -49,22 +49,31 @@ typedef struct s_philo
 
 typedef struct s_p
 {
-	t_data data;
-	t_philo *ph;
+	t_data	data;
+	t_philo	*ph;
 }		t_p;
 
-int		ft_errors(int ac, char **av);
+/* **********************************ERRORS********************************** */
+int			ft_errors(int ac, char **av);
+
+/* **********************************INIT************************************ */
+void		ft_init_data(char **av, int ac, t_p *p);
+
+/* *********************************ROUTINE********************************** */
+void		ft_start_routine(t_p *p);
+
+/* **********************************DEATH*********************************** */
+int			ft_is_dead(t_philo *ph);
+int			ft_check_death(t_philo *ph, int flag);
+void		*ft_death(void	*arg);
+void		*ft_stop(t_philo *ph);
+
+/* **********************************UTILS*********************************** */
 long long	ft_get_time(void);
-long	ft_atol(char *str);
-void	*ft_safe_malloc(size_t bytes);
-void	ft_init_data(char **av, int ac, t_p *p);
-void	ft_exit(char *s);
-void	ft_start_routine(t_p *p);
-void	ft_usleep(long long int time, t_philo *ph);
-void	ft_write(char *s, t_philo *ph);
-int	ft_is_dead(t_philo *ph);
-int	ft_check_death(t_philo *ph, int flag);
-void	*ft_death(void	*arg);
-void	*ft_stop(t_philo *ph);
+long		ft_atol(char *str);
+int			ft_isdigit(int c);
+void		ft_exit(char *s);
+void		ft_usleep(long long int time, t_philo *ph);
+void		ft_write(char *s, t_philo *ph);
 
 #endif

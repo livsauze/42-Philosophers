@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 11:27:22 by livsauze          #+#    #+#             */
-/*   Updated: 2024/06/30 20:12:09 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:39:34 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,10 @@ void	ft_eat(t_philo *ph)
 	ft_fork(ph);
 	pthread_mutex_lock(&ph->p_data->time_m);
 	ph->last_eat = ft_get_time();
-	pthread_mutex_unlock(&ph->p_data->time_m);
 	ft_write("is eating", ph);
 	ph->meal_count++;
-	ft_usleep(ph->p_data->time_to_eat, ph);		
+	pthread_mutex_unlock(&ph->p_data->time_m);
+	ft_usleep(ph->p_data->time_to_eat, ph);
 	pthread_mutex_unlock(&ph->l_fork);
 	pthread_mutex_unlock(ph->r_fork);
 }
@@ -60,7 +60,7 @@ void	*ft_dinner(void *data)
 		if (ph->p_data->stop)
 		{
 			pthread_mutex_unlock(&ph->p_data->dead_m);
-			return(NULL);
+			return (NULL);
 		}
 		pthread_mutex_unlock(&ph->p_data->dead_m);
 		ft_eat(ph);
@@ -77,7 +77,6 @@ void	ft_start_routine(t_p *p)
 	int	i;
 
 	i = 0;
-
 	while (i < p->data.philos_nb)
 	{
 		p->ph[i].p_data = &p->data;

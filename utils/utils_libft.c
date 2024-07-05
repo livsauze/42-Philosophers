@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atol.c                                          :+:      :+:    :+:   */
+/*   utils_libft.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/06/07 14:18:23 by livsauze          #+#    #+#             */
-/*   Updated: 2024/06/07 14:18:47 by livsauze         ###   ########.fr       */
+/*   Created: 2024/07/05 12:37:10 by livsauze          #+#    #+#             */
+/*   Updated: 2024/07/05 12:52:45 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../include/philo.h"
 
 long	ft_atol(char *str)
 {
@@ -36,4 +36,11 @@ long	ft_atol(char *str)
 		i++;
 	}
 	return (sign * result);
+}
+
+int	ft_isdigit(int c)
+{
+	if (c >= 48 && c <= 57)
+		return (1);
+	return (0);
 }

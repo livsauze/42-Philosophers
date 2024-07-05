@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 18:45:05 by livsauze          #+#    #+#             */
-/*   Updated: 2024/06/30 20:16:57 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/05 13:40:22 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,10 @@ int	ft_is_full(t_philo *ph)
 	count = 0;
 	while (i < ph->p_data->philos_nb)
 	{
+		pthread_mutex_lock(&ph[i].p_data->time_m);
 		if (ph[i].meal_count == ph->p_data->max_meal)
 			count++;
+		pthread_mutex_unlock(&ph[i].p_data->time_m);
 		i++;
 	}
 	if (count == ph->p_data->philos_nb)
@@ -34,9 +36,9 @@ int	ft_is_full(t_philo *ph)
 void	*ft_death(void	*arg)
 {
 	t_philo	*ph;
-	int i;
-	int	eat;
-	
+	int		i;
+	int		eat;
+
 	ph = (t_philo *)arg;
 	while (1)
 	{

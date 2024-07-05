@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/06 20:21:11 by livsauze          #+#    #+#             */
-/*   Updated: 2024/06/07 14:38:24 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/05 12:43:48 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,12 +47,12 @@ int	ft_errors(int ac, char **av)
 	}
 	if (ft_check_content(av))
 		return (1);
-	if (ft_atoi(av[1]) < 0 || ft_atoi(av[1]) > 200)
+	if (ft_atol(av[1]) < 0 || ft_atol(av[1]) > 200)
 	{
 		printf("Invalid input : use a nb of philos between 0 and 200.\n");
 		return (1);
 	}
-	if (ft_atoi(av[2]) < 0 || ft_atoi(av[3]) < 0 || ft_atoi(av[4]) < 0)
+	if (ft_atol(av[2]) < 0 || ft_atol(av[3]) < 0 || ft_atol(av[4]) < 0)
 	{
 		printf("Invalid input : use an unsiged int between 0 and INT_MAX.\n");
 		return (1);
