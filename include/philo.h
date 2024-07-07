@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:00:11 by livsauze          #+#    #+#             */
-/*   Updated: 2024/07/06 11:09:00 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/07 18:14:08 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void		ft_start_routine(t_p *p);
 
 /* **********************************DEATH*********************************** */
 int			ft_is_dead(t_philo *ph);
-int			ft_check_death(t_philo *ph, int flag);
+int			ft_check_death(t_philo *philo, int flag);
 void		*ft_death(void	*arg);
 void		*ft_stop(t_philo *ph);
 

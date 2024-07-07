@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 18:45:05 by livsauze          #+#    #+#             */
-/*   Updated: 2024/07/07 17:09:55 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/07 19:19:13 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ void	*ft_death(void	*arg)
 {
 	t_philo	*ph;
 	int		i;
-	int		eat;
 
 	ph = (t_philo *)arg;
 	while (1)
@@ -45,14 +44,15 @@ void	*ft_death(void	*arg)
 		i = 0;
 		while (i < ph->p_data->philos_nb && !ph->p_data->stop)
 		{
-			eat = ft_is_full(ph);
-			pthread_mutex_lock(&ph->p_data->meal_m);
-			if (eat)
+			if (ft_is_full(ph))
 				ph->p_data->full++;
-			if (ft_is_dead(&ph[i]) || eat)
+			pthread_mutex_lock(&ph->p_data->meal_m);
+			if (ft_is_dead(&ph[i]) || ph->p_data->full)
 			{
+				pthread_mutex_lock(&ph->p_data->write_m);
 				ph->p_data->stop++;
 				pthread_mutex_unlock(&ph->p_data->meal_m);
+				pthread_mutex_unlock(&ph->p_data->write_m);
 				return (NULL);
 			}
 			pthread_mutex_unlock(&ph->p_data->meal_m);
