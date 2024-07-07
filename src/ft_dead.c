@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 18:45:05 by livsauze          #+#    #+#             */
-/*   Updated: 2024/07/05 13:40:22 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:09:55 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ int	ft_is_full(t_philo *ph)
 	count = 0;
 	while (i < ph->p_data->philos_nb)
 	{
-		pthread_mutex_lock(&ph[i].p_data->time_m);
+		pthread_mutex_lock(&ph[i].p_data->meal_m);
 		if (ph[i].meal_count == ph->p_data->max_meal)
 			count++;
-		pthread_mutex_unlock(&ph[i].p_data->time_m);
+		pthread_mutex_unlock(&ph[i].p_data->meal_m);
 		i++;
 	}
 	if (count == ph->p_data->philos_nb)
@@ -46,13 +46,16 @@ void	*ft_death(void	*arg)
 		while (i < ph->p_data->philos_nb && !ph->p_data->stop)
 		{
 			eat = ft_is_full(ph);
+			pthread_mutex_lock(&ph->p_data->meal_m);
 			if (eat)
 				ph->p_data->full++;
 			if (ft_is_dead(&ph[i]) || eat)
 			{
 				ph->p_data->stop++;
+				pthread_mutex_unlock(&ph->p_data->meal_m);
 				return (NULL);
 			}
+			pthread_mutex_unlock(&ph->p_data->meal_m);
 			i++;
 		}
 	}

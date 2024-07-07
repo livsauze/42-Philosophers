@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 11:27:22 by livsauze          #+#    #+#             */
-/*   Updated: 2024/07/05 13:39:34 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:16:16 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ void	ft_fork(t_philo *ph)
 void	ft_eat(t_philo *ph)
 {
 	ft_fork(ph);
-	pthread_mutex_lock(&ph->p_data->time_m);
+	pthread_mutex_lock(&ph->p_data->meal_m);
 	ph->last_eat = ft_get_time();
 	ft_write("is eating", ph);
 	ph->meal_count++;
-	pthread_mutex_unlock(&ph->p_data->time_m);
+	pthread_mutex_unlock(&ph->p_data->meal_m);
 	ft_usleep(ph->p_data->time_to_eat, ph);
 	pthread_mutex_unlock(&ph->l_fork);
 	pthread_mutex_unlock(ph->r_fork);
@@ -56,13 +56,13 @@ void	*ft_dinner(void *data)
 	}
 	while (1)
 	{
-		pthread_mutex_lock(&ph->p_data->dead_m);
+		pthread_mutex_lock(&ph->p_data->meal_m);
 		if (ph->p_data->stop)
 		{
-			pthread_mutex_unlock(&ph->p_data->dead_m);
+			pthread_mutex_unlock(&ph->p_data->meal_m);
 			return (NULL);
 		}
-		pthread_mutex_unlock(&ph->p_data->dead_m);
+		pthread_mutex_unlock(&ph->p_data->meal_m);
 		ft_eat(ph);
 		ft_write("is sleeping", ph);
 		ft_usleep(ph->p_data->time_to_sleep, ph);

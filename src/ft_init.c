@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:27:45 by livsauze          #+#    #+#             */
-/*   Updated: 2024/07/05 12:55:58 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/06 11:09:12 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	ft_init_mutex(t_p *p)
 {
 	pthread_mutex_init(&p->data.time_m, NULL);
+	pthread_mutex_init(&p->data.meal_m, NULL);
 	pthread_mutex_init(&p->data.write_m, NULL);
 	pthread_mutex_init(&p->data.dead_m, NULL);
 }

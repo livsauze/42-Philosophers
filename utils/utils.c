@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/07 14:15:09 by livsauze          #+#    #+#             */
-/*   Updated: 2024/07/05 13:33:37 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/07 17:32:31 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	ft_write(char *s, t_philo *ph)
 	time = ft_get_time() - ph->p_data->start_time;
 	if (time >= 0 && !ph->p_data->stop)
 		printf("%lld, Philo %d %s\n", time, ph->philo_id, s);
-	pthread_mutex_unlock(&ph->p_data->write_m);
 	pthread_mutex_unlock(&ph->p_data->dead_m);
+	pthread_mutex_unlock(&ph->p_data->write_m);
 }
 
 void	ft_usleep(long long time, t_philo *ph)

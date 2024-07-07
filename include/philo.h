@@ -6,7 +6,7 @@
 /*   By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/02 14:00:11 by livsauze          #+#    #+#             */
-/*   Updated: 2024/07/05 12:52:02 by livsauze         ###   ########.fr       */
+/*   Updated: 2024/07/06 11:09:00 by livsauze         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,9 @@ typedef struct s_data
 	int				full;
 	long long		start_time;
 	pthread_mutex_t	time_m;
-	pthread_mutex_t	write_m;
+	pthread_mutex_t	meal_m;
 	pthread_mutex_t	dead_m;
+	pthread_mutex_t	write_m;
 }		t_data;
 
 typedef struct s_philo
