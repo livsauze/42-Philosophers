@@ -6,9 +6,15 @@
 #    By: livsauze <livsauze@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/04 15:22:34 by livsauze          #+#    #+#              #
-#    Updated: 2024/07/05 12:39:04 by livsauze         ###   ########.fr        #
+#    Updated: 2024/07/07 19:53:06 by livsauze         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
+# ***********Color Definition**************#
+RED = \033[91m
+YELLOW = \033[33m
+GREEN = \033[92m
+#******************************************#
 
 NAME = philo
 
@@ -23,17 +29,21 @@ SRCS = ${UTILS} src/main.c src/ft_errors.c src/ft_init.c \
 OBJS = ${SRCS:.c=.o}
 
 %.o : %.c
-		${CC} ${CFLAGS} ${INC} -c $< -o $@
+		@${CC} ${CFLAGS} ${INC} -c $< -o $@
 
 ${NAME} : ${OBJS}
-		${CC} ${CFLAGS} ${INC} ${OBJS} -o ${NAME}
+		@echo "$(YELLOW)...Compiling...\n"
+		@${CC} ${CFLAGS} ${INC} ${OBJS} -o ${NAME}
+		@echo "$(GREEN)Philo compiled ✅"
 all : ${NAME}
 
 clean :
-		rm -f ${OBJS}
+		@echo "$(RED)Deleting object files\n"
+		@rm -f ${OBJS}
 
 fclean : clean
-		rm -f ${NAME}
+		@echo "$(RED)Deleting executable\n"
+		@rm -f ${NAME}
 
 re : fclean all
 
